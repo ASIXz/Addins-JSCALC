@@ -1,0 +1,90 @@
+
+            /*var setup = function()
+            {
+                document.getElementById('field').value = action();
+            }
+            var doit = function(char)
+            {
+                
+                if((lastAction !== char)&&(char !== '='))
+                {
+                     a = b = 'ba';
+                }
+                lastAction = char;
+                ko = true;
+                if(isNaN(b) && !isNaN(a))
+                {
+                    b = document.getElementById('field').value;
+                }
+                else
+                {
+                    a = document.getElementById('field').value;
+                }
+                switch (char)
+                {
+                    case '+':
+                        action = function()
+                        {
+                            return +a + +b;
+                        }
+                        break;
+                    case '-':
+                        action = function()
+                        {
+                            return +a - +b;
+                        }
+                        break;
+                    case '*':
+                        action = function()
+                        {
+                            return +a * +b;
+                        }
+                        break;
+                    case '/':
+                        action = function()
+                        {
+                            return +a / +b;
+                        }
+                        break;
+                    case '=':
+                        break;
+                    default:
+                        return;
+                }
+                if(!isNaN(b)) setup();
+            }
+            var add = function(number)
+            {
+                if(ko) 
+                {
+                    document.getElementById('field').value = '';
+                    ko = false;
+                }
+                document.getElementById('field').value += number;
+            }
+            var dot = function()
+            {
+                if(document.getElementById('field').value.indexOf('.') === -1)
+                {
+                    document.getElementById('field').value += '.';
+                    ko = false;
+                }
+            }
+            var sign = function()
+            {
+                ko = false;
+                if(document.getElementById('field').value.indexOf('-') === -1)
+                {
+                    document.getElementById('field').value = '-' + document.getElementById('field').value;
+                }
+                else
+                {
+                    document.getElementById('field').value = document.getElementById('field').value.substr(1);
+                }
+                
+            }
+            var ce = function()
+            {
+                document.getElementById('field').value = '';
+                a = b = 'ba';
+            }*/

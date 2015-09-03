@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+    <head>
+        <title>calc</title>
+        <script>
+            var a;
+            var b;
+            var action;
+            var active = true;
+            var memory = 0;
+            var calc = function()
+            {//функция вызывается по клику равно
+                if(!isNaN(a))
+                {
+                    if(isNaN(b))
+                    {
+                        b = document.getElementById('field').value;
+                    }
+                    document.getElementById('field').value = action();
+                    a = action();
+                    active = false;
+                }
+            };
+            var doit = function(char)
+            {
+                if(active) calc();
+                else b = 'ba';
+                if(isNaN(a))
+                {
+                    a = document.getElementById('field').value;
+                }
+                switch(char)
+                {
+                    case '+':
+                        action = function()
+                        {
+                            return +a + +b;
+                        }
+                        break;
+                    case '-':
+                        action = function()
+                        {
+                            return +a - +b;
+                        }
+                        break;
+                    case '*':
+                        action = function()
+                        {
+                            return +a * +b;
+                        }
+                        break;
+                    case '/':
+                        action = function()
+                        {
+                            return +a / +b;
+                        }
+                        break;
+                }
+                active = false;
+            };
+            var add = function(number)
+            {
+                if(!active) 
+                {
+                    document.getElementById('field').value = '0';
+                    active = true;
+                }
+                if(document.getElementById('field').value === '0')
+                    document.getElementById('field').value = number;
+                else
+                    document.getElementById('field').value += number;
+            };
+            var ce = function()
+            {
+                a = b = 'ba';
+                active = true;
+                action = null;
+                document.getElementById('field').value = '0';
+                memory = 0;
+            }
+            var negate = function()
+            {
+                if(document.getElementById('field').value !== '0')
+                {
+                if(document.getElementById('field').value[0] !== '-')
+                    document.getElementById('field').value = '-' + document.getElementById('field').value;
+                else
+                    document.getElementById('field').value = document.getElementById('field').value.substring(1);
+                    active = true;
+                }
+            }
+            var dot = function()
+            {
+                if(!active) document.getElementById('field').value = '0';
+                if(document.getElementById('field').value.indexOf('.') < 0)
+                {
+                    document.getElementById('field').value += '.';
+                }
+                active = true;
+            }
+            var doone = function(char)
+            {
+                var i  = +document.getElementById('field').value;
+                switch(char)
+                {
+                    case 'sin':
+                        i = Math.sin(i);
+                        break;
+                    case 'cos':
+                        i = Math.cos(i);
+                        break;
+                    case 'sqrt':
+                        i = Math.sqrt(i);
+                        break;
+                    case 'sqr':
+                        i = i*i;
+                        break;
+                }
+                document.getElementById('field').value = i;
+                if(isNaN(a)) active = false;
+            }
+            var mem = function(char)
+            {
+                switch(char)
+                {
+                    case '+':
+                        memory += +document.getElementById('field').value;
+                        break;
+                    case '-':
+                        memory -= +document.getElementById('field').value;
+                        break;
+                    case '0':
+                        memory = 0;
+                        break;
+                    case 'r':
+                        document.getElementById('field').value = memory + +document.getElementById('field').value;
+                        active = false;
+                        break;
+                }
+            }
+        </script>
+        <style>
+            button
+            {
+                width: 4em;
+                height: 4em;
+            }
+            input
+            {
+                height: 3em;
+                width: 20em;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" id = "field" value="0">
+        <br>
+        <button class="button" onclick="doit('+')">+</button>
+        <button class="button" onclick="doit('-')">-</button>
+        <button class="button" onclick="calc()" style="width: 8em">=</button>
+        <br>
+        <button class="button" onclick="doit('*')">*</button>
+        <button class="button" onclick="doit('/')">/</button>
+        <button class="button" onclick="ce()">ce</button>
+        <br>
+        <button class="button" onclick="add(1)">1</button>
+        <button class="button" onclick="add(2)">2</button>
+        <button class="button" onclick="add(3)">3</button>
+        <br>
+        <button class="button" onclick="add(4)">4</button>
+        <button class="button" onclick="add(5)">5</button>
+        <button class="button" onclick="add(6)">6</button>
+        <br>
+        <button class="button" onclick="add(7)">7</button>
+        <button class="button" onclick="add(8)">8</button>
+        <button class="button" onclick="add(9)">9</button>
+        <br>
+        <button class="button" onclick="negate()">+/-</button>
+        <button class="button" onclick="add(0)">0</button>
+        <button class="button" onclick="dot()">.</button>
+        <br>
+        <button class="button" onclick="doone('sqr')">x<sup>2</sup></button>
+        <button class="button" onclick="doone('sin')">sin(x)</button>
+        <button class="button" onclick="doone('cos')">cos(x)</button>
+        <button class="button" onclick="doone('sqrt')">sqrt(x)</button>
+        <br>
+        <button class="button" onclick="mem('+')">M+</button>
+        <button class="button" onclick="mem('-')">M-</button>
+        <button class="button" onclick="mem('r')">MR</button>
+        <button class="button" onclick="mem('0')">MC</button>
+    </body>
+</html>
